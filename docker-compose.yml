@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+
+  twitterbot:
+    image: brunovianna/tweetbot
+    restart: unless-stopped
+    environment:
+      CONSUMER_KEY: ${CONSUMER_KEY}
+      CONSUMER_SECRET: ${CONSUMER_SECRET}
+      ACCESS_TOKEN: ${ACCESS_TOKEN}
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+    volumes:
+      - ./index:/root/index
+      - ./files:/root/files
+
+#    volumes:
+#      - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
+#    ports:
+#      - "3306:3306"
+
+#  cms:
+#    image: node:12.6
+#    command: npm run develop
+#    depends_on:
+#      - db
+#    environment:
+#      - database_host=db
+#      - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
+#    ports:
+#      - "1337:1337"
+#    volumes:
+#      - ${CMS_SRC}:/cms
+#    working_dir: /cms
+
+
+#  socket-server:
+#    image: node:12.6
+#    command: sh runsocket.sh
+#    ports:
+#      - 8081:8081
+#      - target: 7400
+#        published: 7400
+#        protocol: udp
+#        mode: host
+#    volumes:
+#     - ${SOCKET_SERVER_SRC}:/socket-server
+#    working_dir: /socket-server
