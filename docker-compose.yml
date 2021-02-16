@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
   twitterbot:
-    image: brunovianna/tweetbot
+    build: ./tweetbot
     restart: unless-stopped
     environment:
       CONSUMER_KEY: ${CONSUMER_KEY}
@@ -13,6 +13,7 @@ services:
     volumes:
       - ./index:/root/index
       - ./files:/root/files
+      - ./start:/root/start
 
 #    volumes:
 #      - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
